@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badge Login</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; display:flex; justify-content:center; align-items:center; height:100vh; }
+    .login-container { background:#fff; padding:30px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2); width:300px; }
+    input { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; }
+    button { width:100%; padding:10px; border:none; border-radius:5px; background:#007bff; color:#fff; font-weight:bold; cursor:pointer; }
+    button:hover { background:#0056b3; }
+    .error { color:red; font-size:0.9em; }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Accesso dipendente</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username (es. n.cognome)" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Accedi</button>
+        <p class="error" id="errorMsg"></p>
+    </form>
+</div>
+
+<script>
+// Database interno simulato (da sostituire con JSON o DB reale)
+const employees = {
+    "g.mandonico": { password: "Dicembre2017!", folder: "https://www.dropbox.com/scl/fo/ld90ndnckremgvocl35i6/ANXf-0US_xwWRCRmBq8UXtM?rlkey=aguewn75kg4uk978p1s8q3p8b&st=hp273fjf&dl=0" },
+};
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim().toLowerCase();
+    const password = document.getElementById("password").value;
+
+    if(employees[username] && employees[username].password === password) {
+        // Login corretto → reindirizza alla cartella del dipendente
+        window.location.href = employees[username].folder;
+    } else {
+        document.getElementById("errorMsg").innerText = "Username o password non corretti";
+    }
+});
+</script>
+
+</body>
+</html>
