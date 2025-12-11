@@ -7,29 +7,57 @@
 
 <style>
     body {
+        margin: 0;
         font-family: Arial, sans-serif;
         background: #f0f0f0;
-        margin: 0;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* BARRA SUPERIORE */
+    .header {
+        width: 100%;
+        height: 70px;
+        background: #ffffff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .header-logo {
+        height: 50px;
+        width: auto;
+    }
+
+    .header-title {
+        margin-left: 15px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* CONTENUTO CENTRALE */
+    .content {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-top: 90px; /* spazio per evitare che il contenuto vada sotto la barra */
     }
 
-    .container {
+    .login-box {
         background: #fff;
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 0 10px rgba(0,0,0,0.15);
         width: 300px;
         text-align: center;
-    }
-
-    .logo {
-        display: block;
-        margin: 0 auto 20px auto;
-        width: 120px;
-        height: auto;
     }
 
     input, button {
@@ -63,23 +91,26 @@
 </head>
 <body>
 
-<div class="container">
-    <!-- LOGO AZIENDALE -->
-    <img src="logo.png" alt="Logo aziendale" class="logo">
-
-    <h2>Accesso Dipendenti</h2>
-
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="Username (es. n.cognome)" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Accedi</button>
-        <p class="error" id="errorMsg"></p>
-    </form>
+<!-- HEADER CON LOGO -->
+<div class="header">
+    <img src="logo.png" alt="Logo aziendale" class="header-logo">
+    <div class="header-title">Portale Dipendenti</div>
 </div>
 
-<!-- Script esterno -->
+<!-- CONTENUTO CENTRALE -->
+<div class="content">
+    <div class="login-box">
+        <h2>Accesso</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username (es. n.cognome)" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Accedi</button>
+            <p class="error" id="errorMsg"></p>
+        </form>
+    </div>
+</div>
+
 <script src="script.js"></script>
 
 </body>
 </html>
-
